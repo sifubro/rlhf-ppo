@@ -47,9 +47,11 @@ if __name__ == '__main__':
 
     dataset = build_dataset(config)
 
-    # This is the model we are going to fine-tune with PPO
+    # This is the model we are going to fine-tune with PPO. 
+    # This is the model we want to optimize which is the GPT-2 "lvwerra/gpt2-imd" already finetuned on the IMDB dataset.
     model = AutoModelForCausalLMWithValueHead.from_pretrained(config.model_name)
-    # This is the reference model (frozen) for the KL divergence
+    # This is the reference model (frozen) for the KL divergence. 
+    # To compare how different are the responses of the model we want to optimize with the frozen one
     ref_model = AutoModelForCausalLMWithValueHead.from_pretrained(config.model_name)
 
     tokenizer = AutoTokenizer.from_pretrained(config.model_name)
